@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="lec20.MenuCardGUI">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="9682b" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="5ec95" class="javax.swing.JMenuBar" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="b866e" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints/>
+                <properties>
+                  <text value="File"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="238ec" class="javax.swing.JMenuItem" binding="newMenuItem">
+                    <constraints/>
+                    <properties>
+                      <text value="New"/>
+                    </properties>
+                  </component>
+                  <component id="b77bb" class="javax.swing.JMenuItem" binding="openMenuItem">
+                    <constraints/>
+                    <properties>
+                      <text value="Open"/>
+                    </properties>
+                  </component>
+                  <component id="12010" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="78739" class="javax.swing.JMenuItem" binding="saveMenuItem">
+                    <constraints/>
+                    <properties>
+                      <text value="Save"/>
+                    </properties>
+                  </component>
+                  <component id="a42fd" class="javax.swing.JMenuItem" binding="saveAsMenuItem">
+                    <constraints/>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="Save as"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="b6d77" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints/>
+                <properties>
+                  <text value="Color"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="37d95" class="javax.swing.JRadioButton" binding="redRadioButton" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <text value="Red"/>
+                    </properties>
+                  </component>
+                  <component id="335a5" class="javax.swing.JRadioButton" binding="blueRadioButton" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <text value="Blue"/>
+                    </properties>
+                  </component>
+                  <component id="7c5e9" class="javax.swing.JRadioButton" binding="yellowRadioButton" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <text value="Yellow"/>
+                    </properties>
+                  </component>
+                  <component id="930ff" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="920d6" class="javax.swing.JCheckBox" binding="customCheckBox" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <text value="Custom"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="86052" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints/>
+                <properties>
+                  <text value="System"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="81f87" binding="leftSide" layout-manager="FlowLayout" hgap="5" vgap="20" flow-align="1">
+        <constraints border-constraint="West"/>
+        <properties>
+          <preferredSize width="70" height="27"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="267c4" class="javax.swing.JLabel" binding="homeLabel">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="70" height="30"/>
+              <text value="Home"/>
+            </properties>
+          </component>
+          <component id="9372a" class="javax.swing.JLabel" binding="editorTextLabel">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="70" height="30"/>
+              <text value="EditorText"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="25d6e" binding="contentSide" layout-manager="CardLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="8494d" binding="homePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="cardHome"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <scrollpane id="9fdf4">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="4d9eb" class="javax.swing.JEditorPane" binding="editorPane1" default-binding="true">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+          <grid id="a353e" binding="textPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="cardText"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <grid id="2250a" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="South"/>
+        <properties>
+          <preferredSize width="154" height="50"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="88935" class="javax.swing.JTextField" binding="txtStatus">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <focusable value="false"/>
+              <font size="28"/>
+              <text value="Hello Greenwich"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="colorGr">
+      <member id="7c5e9"/>
+      <member id="7c5e9"/>
+      <member id="335a5"/>
+      <member id="37d95"/>
+    </group>
+  </buttonGroups>
+</form>
