@@ -4,7 +4,6 @@ import CandidateManager.Candidate;
 import CandidateManager.JDateLabelFormat;
 import CandidateManager.XUtil;
 import com.lib.XFile;
-import lec20.MenuCardGUI;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -55,11 +54,11 @@ public class GWJAVA extends JFrame{
     private JButton updateButton;
     private JButton deleteButton;
     private JButton uploadButton;
-    private JButton sortByNameButton;
     private JTable tbCan;
-    private JButton sortByAverageScoresButton;
     private JDatePickerImpl JDatePickerImpl1;
     private JButton btnDeleteAll;
+    private JTextField textField1;
+    private JTextField textField2;
     private JLabel imgLabel;
     CardLayout cardLayout;
     String  fPath;
@@ -193,12 +192,13 @@ public class GWJAVA extends JFrame{
             }
         });
         // Upload hình ảnh
-        uploadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                img();
-            }
-        });
+//        uploadButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                img();
+//            }
+//        });
+
     }
 // upload hình ảnh
     private void img() {
