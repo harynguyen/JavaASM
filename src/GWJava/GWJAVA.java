@@ -9,6 +9,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
@@ -17,9 +18,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+
+
 
 public class GWJAVA extends JFrame{
     private JPanel mainPanel;
@@ -44,7 +51,6 @@ public class GWJAVA extends JFrame{
     private JRadioButton maleRadioButton;
     private JRadioButton femaleRadioButton;
     private JComboBox cbMainMajor;
-    private JButton newButton;
     private JButton addButton;
     private JButton updateButton;
     private JButton deleteButton;
@@ -53,6 +59,8 @@ public class GWJAVA extends JFrame{
     private JTable tbCan;
     private JButton sortByAverageScoresButton;
     private JDatePickerImpl JDatePickerImpl1;
+    private JButton btnDeleteAll;
+    private JLabel imgLabel;
     CardLayout cardLayout;
     String  fPath;
     DefaultTableModel modelTable;
@@ -152,6 +160,147 @@ public class GWJAVA extends JFrame{
                 }
             }
         });
+        /// button add
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddStudentGrade();
+            }
+        });
+    // button Update
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               updateStudentGrade();
+            }
+        });
+        tbCan.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                 tbMousePress();
+            }
+        });
+        btnDeleteAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DeleteAllStudentGrade();
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DeleteStudentGrade();
+            }
+        });
+        // Upload hình ảnh
+        uploadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                img();
+            }
+        });
+    }
+// upload hình ảnh
+    private void img() {
+        String userDir = System.getProperty("user.dir");
+        JFileChooser  fc = new JFileChooser(userDir);
+        if (fc.showOpenDialog(this)== JFileChooser.APPROVE_OPTION){
+            File f = fc.getSelectedFile();
+            BufferedImage img = null;
+            try{
+                String fileAbsPath = f.getAbsolutePath();
+                img  = ImageIO.read(new File(fileAbsPath));
+            }catch (IOException e){
+                System.err.println(e);
+            }
+            Image i = img.getScaledInstance(imgLabel.getWidth(), imgLabel.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(i);
+            imgLabel.setIcon(icon);
+        }
+    }
+
+    private void DeleteAllStudentGrade(){
+          }
+
+   private void DeleteStudentGrade(){
+        if (row >-1){
+            int re=JOptionPane.showConfirmDialog(this,"Do you want?","Delete",JOptionPane.YES_NO_OPTION
+            , JOptionPane.QUESTION_MESSAGE);
+            if (re == JOptionPane.YES_OPTION){
+                // remove the selectec canđiate
+                removeStudentGrade();
+                // fill to table
+                fillToTable();
+                // save file
+                XFile.writeObject(file, listCan);
+                // clear form
+                clearForm();
+
+            }
+        }
+
+    }
+
+    private void removeStudentGrade() {
+      listCan.remove(row);
+    }
+
+    private void tbMousePress() {
+        // get index (selected row)
+        row = tbCan.getSelectedRow();
+        // show this row to Form
+        showDetail(row);
+        txtID.setEnabled(true);
+    }
+    // hàm update Student Grade
+    private void  updateStudentGrade() {
+        //  save all information form Form to list
+        editStudentGrade();
+        // fill to table
+        fillToTable();
+        // save file
+        XFile.writeObject(file, listCan);
+        // save xong no se click lai cho da chon
+        tbCan.setRowSelectionInterval(row,row);
+        // delete xong nó sẽ clear form
+        clearForm();
+    }
+    private void clearForm(){
+        txtID.setText("");
+        txtName.setText("");
+        txtMath.setText("");
+        txtPhy.setText("");
+        txtChe.setText("");
+        txtID.setEnabled(true);
+    }
+    private void editStudentGrade() {
+        Candidate c = listCan.get(row);
+        c.setName(txtName.getText());
+        c.setMath(Double.parseDouble(txtMath.getText()));
+        c.setPhy(Double.parseDouble(txtPhy.getText()));
+        c.setChemis(Double.parseDouble(txtChe.getText()));
+        c.setGender(femaleRadioButton.isSelected());
+        c.setBday((Date) JDatePickerImpl1.getModel().getValue());
+
+    }
+
+    private void AddStudentGrade(){
+        //save all infor form Form to list
+        addCan();
+        // fill to table
+        fillToTable();
+        // save file
+        XFile.writeObject(file, listCan);
+
+
+    }
+    private void addCan(){
+        Candidate c = new Candidate(txtID.getText(),txtName.getText(), Double.parseDouble(txtMath.getText()),
+                Double.parseDouble(txtPhy.getText()),Double.parseDouble(txtChe.getText()),
+                femaleRadioButton.isSelected(),
+                XUtil.convertDateToString((Date) JDatePickerImpl1.getModel().getValue())
+        );
+        listCan.add(c);
     }
 
     private void showDetail(int row) {

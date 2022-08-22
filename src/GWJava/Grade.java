@@ -15,7 +15,7 @@ public class Grade implements Serializable {
     private String major;
     private Date bday;
 
-    public Grade(String ID, String name, double math, double phy, double chemis, Boolean gender, String major, String bday) {
+    public Grade(String ID, String name, double math, double phy, double chemis, Boolean gender, String bday) {
         this.ID = ID;
         this.name = name;
         this.math = math;
